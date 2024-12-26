@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./App.css";
 
 function App() {
   const [number, setNumber] = useState("");
@@ -18,23 +19,25 @@ function App() {
       setResult(data.output);
     } catch (error) {
       console.error("Error:", error);
+      setResult("Error connecting to server");
     }
   };
 
   return (
-    <div>
+    <div className="app-container">
       <h1>Number Doubler</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="form-container">
         <input
           type="number"
           value={number}
           onChange={(e) => setNumber(e.target.value)}
           placeholder="Enter a number"
+          className="input-field"
           required
         />
-        <button type="submit">Send</button>
+        <button type="submit" className="submit-button">Calculate</button>
       </form>
-      {result !== null && <h2>Result: {result}</h2>}
+      {result !== null && <h2 className="result-display">Result: {result}</h2>}
     </div>
   );
 }
